@@ -16,8 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+# Onderstaande imports om gedownloade plaatjes (vanuit media map) te tonen in site
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('', include('mijnWebApp.urls')),
     path('admin/', admin.site.urls),
 ]
+
+# Onderstaande toevoegen om gedownloade plaatjes (vanuit media map) te tonen in site
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
